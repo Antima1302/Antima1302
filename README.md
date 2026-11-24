@@ -62,3 +62,17 @@ A sensor-based radar demonstration using an ultrasonic sensor and servo motor.
 ---
 
 *Always learning, building, and improving.* 🚀
+
+## System Architecture
+
+```mermaid
+flowchart TD
+    A[Redis Client] -->|TCP Commands| B[Redis Server]
+    B --> C[Command Processing]
+    C --> D[In-Memory Database]
+    C --> E[AOF Persistence]
+    E --> F[appendonly.aof]
+    F -->|Recovery on Restart| D
+    D -->|Response| B
+    B -->|TCP Response| A
+```
